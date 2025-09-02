@@ -429,11 +429,12 @@
                     scheduleHours: JSON.stringify(scheduleHours),
                     timestamp: Date.now()
                 });
-                console.log('Configurazione dipendenti salvata!');
+                showMessage('Configurazione dipendenti salvata!');
                 document.getElementById('employees-modal').classList.add('hidden');
                 loadConfigAndSchedule();
             } catch (error) {
                 console.error("Errore nel salvataggio della configurazione dei dipendenti:", error);
+                showMessage("Errore nel salvataggio. Controlla la console.");
             }
         }
 
@@ -457,11 +458,12 @@
                     scheduleHours: JSON.stringify(timeSlotsData),
                     timestamp: Date.now()
                 });
-                console.log('Configurazione fasce orarie salvata!');
+                showMessage('Configurazione fasce orarie salvata!');
                 document.getElementById('time-slots-modal').classList.add('hidden');
                 loadConfigAndSchedule();
             } catch (error) {
                 console.error("Errore nel salvataggio della configurazione delle fasce orarie:", error);
+                showMessage("Errore nel salvataggio. Controlla la console.");
             }
         }
 
@@ -486,6 +488,7 @@
                 });
             } catch (error) {
                 console.error("Errore nel salvataggio della pianificazione:", error);
+                showMessage("Errore nel salvataggio. Controlla la console.");
             }
         }
 
@@ -702,7 +705,7 @@
                 row.className = 'border-b border-gray-200 hover:bg-gray-50';
                 
                 const nameCell = document.createElement('td');
-                nameCell.className = 'p-3 text-sm font-medium';
+                nameCell.className = 'p-3 text-sm font-medium text-center';
                 nameCell.textContent = emp.name;
                 row.appendChild(nameCell);
                 
@@ -747,7 +750,7 @@
         function renderEmployeeConfig() {
             const configContainer = document.getElementById('employees-config');
             configContainer.innerHTML = `
-                <div class="flex items-center space-x-2 mb-2 font-semibold text-sm">
+                <div class="flex items-center space-x-2 mb-2 font-semibold text-sm text-center">
                     <span class="w-1/3">Nome</span>
                     <span class="w-1/6">ID</span>
                     <span class="w-1/6">Ore Sett.</span>
@@ -759,7 +762,7 @@
                 row.className = 'employee-entry flex items-center space-x-2 mb-2';
                 row.innerHTML = `
                     <input type="text" class="w-1/3 employee-input employee-name" value="${emp.name}" placeholder="Nome">
-                    <input type="text" class="w-1/6 employee-input employee-id" value="${emp.id}" placeholder="ID">
+                    <input type="text" class="w-1/6 employee-input employee-id text-center" value="${emp.id}" placeholder="ID">
                     <input type="number" class="w-1/6 employee-input employee-hours" value="${emp.weeklyHours}" placeholder="Ore">
                     <button class="w-1/6 bg-red-500 text-white p-2 rounded-lg remove-employee-btn">Rimuovi</button>
                 `;
@@ -901,7 +904,7 @@
             row.className = 'employee-entry flex items-center space-x-2 mb-2';
             row.innerHTML = `
                 <input type="text" class="w-1/3 employee-input employee-name" placeholder="Nome">
-                <input type="text" class="w-1/6 employee-input employee-id" placeholder="ID">
+                <input type="text" class="w-1/6 employee-input employee-id text-center" placeholder="ID">
                 <input type="number" class="w-1/6 employee-input employee-hours" placeholder="Ore">
                 <button class="w-1/6 bg-red-500 text-white p-2 rounded-lg remove-employee-btn">Rimuovi</button>
             `;
